@@ -11,11 +11,15 @@ describe('My First Test suite', function()
       cy.get('.product').should('have.length',5)
       cy.get('.product:visible').should('have.length',4)
       //parent child chaining
-      cy.get('.products').find('.product').should('have.length',4)
+      cy.get('.products').as('productLocator')
+      cy.get('@productLocator').find('.product').should('have.length',4)
       cy.get(':nth-child(3) > .product-action > button').click()
-      cy.get('.products').find('.product').eq(2).contains('ADD TO CART').click()
-      console.log('sf')
-      cy.get('.products').find('.product').each(($el, index, $list) => {
+      cy.get('@productLocator').find('.product').eq(2).contains('ADD TO CART').click().then(function()
+      {
+        console.log('sf')
+      })
+      
+      cy.get('@productLocator').find('.product').each(($el, index, $list) => {
       
        const textveg= $el.find('h4.product-name').text()
        if(textveg.includes('Cashews'))
@@ -23,11 +27,15 @@ describe('My First Test suite', function()
        $el.find('button').click()
        }
       })
+      //assert if logo text is correctly displayed
+      cy.get('.brand').should('have.text','GREENKART')
+     //this is to print in logs
       cy.get('.brand').then(function(logoelement)
      {
        cy.log(logoelement.text())
+
      } )
-      // cy.log(logo.text())
+
 
     })
 })
