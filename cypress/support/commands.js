@@ -17,6 +17,16 @@
 // Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
 //
 //
+Cypress.Commands.add("selectproduct", (productName) => { 
+cy.get('h4.card-title').each(($el, index, $list) => {
+    if($el.text().includes(productName))
+    {
+        cy.get('button.btn.btn-info').eq(index).click()
+    }
+    
+     })
+
+})
 // -- This is a dual command --
 // Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
 //
