@@ -21,7 +21,12 @@ describe('My First Test suite', function()
         expect(Str).to.equal('Hello , Are you sure you want to confirm?')
 
       })
-
+//code to run open new tab in same window by removing target (child tabs)
+      cy.get('#opentab').invoke('removeAttr','target').click()
+      cy.url().should('include','.com')
+//code to navigate back page
+      cy.go('back')
+      
 
     })
 })
