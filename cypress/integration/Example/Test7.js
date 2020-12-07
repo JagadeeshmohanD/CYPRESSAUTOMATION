@@ -9,6 +9,7 @@ describe('My First Test suite', function()
 
      cy.get('#opentab').then(function(el)
      {
+       //opentab in same window
        const url=el.prop('href')
        cy.log(url)
        cy.visit(url)
