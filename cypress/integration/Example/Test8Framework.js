@@ -23,9 +23,17 @@ this.data=data
     cy.get(':nth-child(4) > .ng-untouched').should('have.value',this.data.name)
     cy.get('input[name="name"]:nth-child(2)').should('have.attr','minlength','2')
     cy.get('#inlineRadio3').should('be.disabled')
+    //use to pause the program
+    // cy.pause()
     cy.get(':nth-child(2) > .nav-link').click()
-    cy.selectproduct('Blackberry')
 
+    
+    this.data.ProductName.forEach(function(element){
+      cy.selectproduct(element)
+
+    });
+    //simplified version in single line
+    // this.data.ProductName.forEach(element => cy.selectproduct(element));
      })
 
   
