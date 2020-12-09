@@ -1,6 +1,6 @@
 /// <reference types="Cypress"/>
-import HomePage from '../PageObjects/HomePage'
-import ProductsPage from '../PageObjects/ProductsPage'
+import HomePage from '../../support/PageObjects/HomePage'
+import ProductsPage from '../../support/PageObjects/ProductsPage'
 describe('My First Test suite', function()
 {
    before(function(){
@@ -18,8 +18,7 @@ this.data=data
       const homePage=new HomePage()
       const productspage=new ProductsPage()
       //check boxes
-      cy.visit("https://rahulshettyacademy.com/angularpractice/")
-
+      cy.visit(Cypress.env('url')+"/angularpractice/")
     //cy.get('input[name="name"]:nth-child(2)').type("bob")
     //calling data from fixtures
     homePage.getEditBox().type(this.data.name)
