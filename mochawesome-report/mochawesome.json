@@ -2,14 +2,14 @@
   "stats": {
     "suites": 1,
     "tests": 1,
-    "passes": 1,
+    "passes": 0,
     "pending": 0,
-    "failures": 0,
-    "start": "2020-12-09T09:22:17.568Z",
-    "end": "2020-12-09T09:22:29.264Z",
-    "duration": 11696,
+    "failures": 1,
+    "start": "2020-12-09T11:28:16.223Z",
+    "end": "2020-12-09T11:28:24.571Z",
+    "duration": 8348,
     "testsRegistered": 1,
-    "passPercent": 100,
+    "passPercent": 0,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,16 +18,16 @@
   },
   "results": [
     {
-      "uuid": "f47872f5-6489-4e3f-bc7c-96f554dd6300",
+      "uuid": "7540f43e-26e7-4cb5-9bd8-094f9cf9a174",
       "title": "",
-      "fullFile": "cypress\\integration\\Example\\Test8Frameworkcopy.js",
-      "file": "cypress\\integration\\Example\\Test8Frameworkcopy.js",
+      "fullFile": "cypress\\integration\\GreenKart\\Test2.js",
+      "file": "cypress\\integration\\GreenKart\\Test2.js",
       "beforeHooks": [],
       "afterHooks": [],
       "tests": [],
       "suites": [
         {
-          "uuid": "e1efd413-c986-4439-8b05-be72cf88e1a0",
+          "uuid": "a9c18efe-8d18-4946-a0e3-907786329cf2",
           "title": "My First Test suite",
           "fullFile": "",
           "file": "",
@@ -35,32 +35,36 @@
           "afterHooks": [],
           "tests": [
             {
-              "title": "My First Test case",
-              "fullTitle": "My First Test suite My First Test case",
+              "title": "My second Test case",
+              "fullTitle": "My First Test suite My second Test case",
               "timedOut": null,
-              "duration": 9700,
-              "state": "passed",
-              "speed": "slow",
-              "pass": true,
-              "fail": false,
+              "duration": 6742,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
               "pending": false,
               "context": null,
-              "code": "Cypress.config('defaultCommandTimeout', 8000);\nvar homePage = new _HomePage[\"default\"]();\nvar productspage = new _ProductsPage[\"default\"](); //check boxes\ncy.visit(Cypress.env('url') + \"/angularpractice/\"); //cy.get('input[name=\"name\"]:nth-child(2)').type(\"bob\")\n//calling data from fixtures\nhomePage.getEditBox().type(this.data.name);\nhomePage.getGender().select(this.data.gender);\nhomePage.getTwoWayDataBinding().should('have.value', this.data.name);\nhomePage.getEditBox().should('have.attr', 'minlength', '2');\nhomePage.getEnterpreneaur().should('be.disabled'); //use to pause the program\n// cy.pause()\nCypress.config('defaultCommandTimeout', 10000);\nhomePage.getShopTab().click();\nthis.data.ProductName.forEach(function (element) {\n  cy.selectproduct(element);\n});\nproductspage.checkOutButton().click();\nvar sum = 0;\ncy.get('tr td:nth-child(4) strong').each(function ($el, index, $list) {\n  //java script is assychronious so we need to make sync\n  var amount = $el.text();\n  var res = amount.split(\" \");\n  res = res[1].trim();\n  sum = Number(sum) + Number(res);\n  cy.log(res);\n}).then(function () {\n  cy.log(sum);\n});\ncy.get('h3 strong').then(function (element) {\n  var amount = element.text();\n  var res = amount.split(\" \");\n  var total = res[1].trim();\n  expect(Number(total)).to.equal(sum);\n});\ncy.contains('Checkout').click();\ncy.get('#country').type('India').wait(1000);\ncy.get('.suggestions > ul > li > a').click();\ncy.get('#checkbox2').click({\n  force: true\n});\ncy.get('input[type=\"submit\"]').click(); //cy.get('.alert').should('have.text','×Success! Thank you! Your order will be delivered in next few weeks :-).')\ncy.get('.alert').then(function (element) {\n  var actualTest = element.text();\n  expect(actualTest.includes(\"Success!\")).to.be[\"true\"];\n}); //simplified version in single line\n// this.data.ProductName.forEach(element => cy.selectproduct(element));",
-              "err": {},
-              "uuid": "6e28cb0f-5689-467b-bdad-2b544926d766",
-              "parentUUID": "e1efd413-c986-4439-8b05-be72cf88e1a0",
+              "code": "cy.visit(\"https://rahulshettyacademy.com/seleniumPractise/#/\");\ncy.get('.search-keyword').type('ca');\ncy.wait(2000); //selenium get hit url in browser, cypress get acts like findelement of selenium\n//parent child chaining\ncy.get('.products').as('productLocator');\ncy.get('@productLocator').find('.product').each(function ($el, index, $list) {\n  var textveg = $el.find('h4.product-name').text();\n  if (textveg.includes('Cashews')) {\n    $el.find('button').click();\n  }\n});\ncy.get('.cart-icon > img').click();\ncy.contains('PROCEED TO CHECKOUT').click();\ncy.contains('place order').click();",
+              "err": {
+                "message": "CypressError: Cypress detected a cross origin error happened on page load:\n\n  > Blocked a frame with origin \"https://rahulshettyacademy.com\" from accessing a cross-origin frame.\n\nBefore the page load, you were bound to the origin policy:\n\n  > https://rahulshettyacademy.com\n\nA cross origin error happens when your application navigates to a new URL which does not match the origin policy above.\n\nA new URL does not match the origin policy if the 'protocol', 'port' (if specified), and/or 'host' (unless of the same superdomain) are different.\n\nCypress does not allow you to navigate to a different origin URL within a single test.\n\nYou may need to restructure some of your test code to avoid this problem.\n\nAlternatively you can also disable Chrome Web Security in Chromium-based browsers which will turn off this restriction by setting { chromeWebSecurity: false } in `cypress.json`.\n\nhttps://on.cypress.io/cross-origin-violation",
+                "estack": "CypressError: Cypress detected a cross origin error happened on page load:\n\n  > Blocked a frame with origin \"https://rahulshettyacademy.com\" from accessing a cross-origin frame.\n\nBefore the page load, you were bound to the origin policy:\n\n  > https://rahulshettyacademy.com\n\nA cross origin error happens when your application navigates to a new URL which does not match the origin policy above.\n\nA new URL does not match the origin policy if the 'protocol', 'port' (if specified), and/or 'host' (unless of the same superdomain) are different.\n\nCypress does not allow you to navigate to a different origin URL within a single test.\n\nYou may need to restructure some of your test code to avoid this problem.\n\nAlternatively you can also disable Chrome Web Security in Chromium-based browsers which will turn off this restriction by setting { chromeWebSecurity: false } in `cypress.json`.\n\nhttps://on.cypress.io/cross-origin-violation\n    at onPageLoadErr (https://rahulshettyacademy.com/__cypress/runner/cypress_runner.js:157105:17)\n    at HTMLIFrameElement.<anonymous> (https://rahulshettyacademy.com/__cypress/runner/cypress_runner.js:169971:17)\n    at HTMLIFrameElement.dispatch (https://rahulshettyacademy.com/__cypress/runner/cypress_runner.js:91335:27)\n    at HTMLIFrameElement.elemData.handle (https://rahulshettyacademy.com/__cypress/runner/cypress_runner.js:91143:28)\nFrom Your Spec Code:\n    at Context.eval (https://rahulshettyacademy.com/__cypress/tests?p=cypress\\integration\\GreenKart\\Test2.js:117:8)",
+                "diff": null
+              },
+              "uuid": "6be61519-3875-4452-8fbf-a5f085a5af1c",
+              "parentUUID": "a9c18efe-8d18-4946-a0e3-907786329cf2",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [
-            "6e28cb0f-5689-467b-bdad-2b544926d766"
+          "passes": [],
+          "failures": [
+            "6be61519-3875-4452-8fbf-a5f085a5af1c"
           ],
-          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 9700,
+          "duration": 6742,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
