@@ -2,14 +2,14 @@
   "stats": {
     "suites": 1,
     "tests": 1,
-    "passes": 0,
+    "passes": 1,
     "pending": 0,
-    "failures": 1,
-    "start": "2020-12-09T11:28:16.223Z",
-    "end": "2020-12-09T11:28:24.571Z",
-    "duration": 8348,
+    "failures": 0,
+    "start": "2020-12-10T08:20:33.095Z",
+    "end": "2020-12-10T08:20:43.415Z",
+    "duration": 10320,
     "testsRegistered": 1,
-    "passPercent": 0,
+    "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,16 +18,16 @@
   },
   "results": [
     {
-      "uuid": "7540f43e-26e7-4cb5-9bd8-094f9cf9a174",
+      "uuid": "518ee560-fbae-4361-8f23-14ced25dce84",
       "title": "",
-      "fullFile": "cypress\\integration\\GreenKart\\Test2.js",
-      "file": "cypress\\integration\\GreenKart\\Test2.js",
+      "fullFile": "cypress\\integration\\GreenKart\\Test1.js",
+      "file": "cypress\\integration\\GreenKart\\Test1.js",
       "beforeHooks": [],
       "afterHooks": [],
       "tests": [],
       "suites": [
         {
-          "uuid": "a9c18efe-8d18-4946-a0e3-907786329cf2",
+          "uuid": "d69ac58a-6052-4981-aa8a-2880bfc83dd0",
           "title": "My First Test suite",
           "fullFile": "",
           "file": "",
@@ -35,36 +35,32 @@
           "afterHooks": [],
           "tests": [
             {
-              "title": "My second Test case",
-              "fullTitle": "My First Test suite My second Test case",
+              "title": "My FirstTest case",
+              "fullTitle": "My First Test suite My FirstTest case",
               "timedOut": null,
-              "duration": 6742,
-              "state": "failed",
-              "speed": null,
-              "pass": false,
-              "fail": true,
+              "duration": 8837,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.visit(\"https://rahulshettyacademy.com/seleniumPractise/#/\");\ncy.get('.search-keyword').type('ca');\ncy.wait(2000); //selenium get hit url in browser, cypress get acts like findelement of selenium\n//parent child chaining\ncy.get('.products').as('productLocator');\ncy.get('@productLocator').find('.product').each(function ($el, index, $list) {\n  var textveg = $el.find('h4.product-name').text();\n  if (textveg.includes('Cashews')) {\n    $el.find('button').click();\n  }\n});\ncy.get('.cart-icon > img').click();\ncy.contains('PROCEED TO CHECKOUT').click();\ncy.contains('place order').click();",
-              "err": {
-                "message": "CypressError: Cypress detected a cross origin error happened on page load:\n\n  > Blocked a frame with origin \"https://rahulshettyacademy.com\" from accessing a cross-origin frame.\n\nBefore the page load, you were bound to the origin policy:\n\n  > https://rahulshettyacademy.com\n\nA cross origin error happens when your application navigates to a new URL which does not match the origin policy above.\n\nA new URL does not match the origin policy if the 'protocol', 'port' (if specified), and/or 'host' (unless of the same superdomain) are different.\n\nCypress does not allow you to navigate to a different origin URL within a single test.\n\nYou may need to restructure some of your test code to avoid this problem.\n\nAlternatively you can also disable Chrome Web Security in Chromium-based browsers which will turn off this restriction by setting { chromeWebSecurity: false } in `cypress.json`.\n\nhttps://on.cypress.io/cross-origin-violation",
-                "estack": "CypressError: Cypress detected a cross origin error happened on page load:\n\n  > Blocked a frame with origin \"https://rahulshettyacademy.com\" from accessing a cross-origin frame.\n\nBefore the page load, you were bound to the origin policy:\n\n  > https://rahulshettyacademy.com\n\nA cross origin error happens when your application navigates to a new URL which does not match the origin policy above.\n\nA new URL does not match the origin policy if the 'protocol', 'port' (if specified), and/or 'host' (unless of the same superdomain) are different.\n\nCypress does not allow you to navigate to a different origin URL within a single test.\n\nYou may need to restructure some of your test code to avoid this problem.\n\nAlternatively you can also disable Chrome Web Security in Chromium-based browsers which will turn off this restriction by setting { chromeWebSecurity: false } in `cypress.json`.\n\nhttps://on.cypress.io/cross-origin-violation\n    at onPageLoadErr (https://rahulshettyacademy.com/__cypress/runner/cypress_runner.js:157105:17)\n    at HTMLIFrameElement.<anonymous> (https://rahulshettyacademy.com/__cypress/runner/cypress_runner.js:169971:17)\n    at HTMLIFrameElement.dispatch (https://rahulshettyacademy.com/__cypress/runner/cypress_runner.js:91335:27)\n    at HTMLIFrameElement.elemData.handle (https://rahulshettyacademy.com/__cypress/runner/cypress_runner.js:91143:28)\nFrom Your Spec Code:\n    at Context.eval (https://rahulshettyacademy.com/__cypress/tests?p=cypress\\integration\\GreenKart\\Test2.js:117:8)",
-                "diff": null
-              },
-              "uuid": "6be61519-3875-4452-8fbf-a5f085a5af1c",
-              "parentUUID": "a9c18efe-8d18-4946-a0e3-907786329cf2",
+              "code": "cy.visit(\"https://rahulshettyacademy.com/seleniumPractise/#/\");\ncy.get('.search-keyword').type('ca');\ncy.wait(2000); //selenium get hit url in browser, cypress get acts like findelement of selenium\ncy.get('.product').should('have.length', 5);\ncy.get('.product:visible').should('have.length', 4); //parent child chaining\ncy.get('.products').as('productLocator');\ncy.get('@productLocator').find('.product').should('have.length', 4);\ncy.get(':nth-child(3) > .product-action > button').click();\ncy.get('@productLocator').find('.product').eq(2).contains('ADD TO CART').click().then(function () {\n  console.log('sf');\n});\ncy.get('@productLocator').find('.product').each(function ($el, index, $list) {\n  var textveg = $el.find('h4.product-name').text();\n  if (textveg.includes('Cashews')) {\n    $el.find('button').click();\n  }\n}); //assert if logo text is correctly displayed\ncy.get('.brand').should('have.text', 'GREENKART'); //this is to print in logs\ncy.get('.brand').then(function (logoelement) {\n  cy.log(logoelement.text());\n});",
+              "err": {},
+              "uuid": "ac6e050e-8572-4c2b-a599-90c388c32062",
+              "parentUUID": "d69ac58a-6052-4981-aa8a-2880bfc83dd0",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
-          "passes": [],
-          "failures": [
-            "6be61519-3875-4452-8fbf-a5f085a5af1c"
+          "passes": [
+            "ac6e050e-8572-4c2b-a599-90c388c32062"
           ],
+          "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 6742,
+          "duration": 8837,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
