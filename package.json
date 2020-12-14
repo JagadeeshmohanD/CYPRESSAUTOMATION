@@ -11,7 +11,13 @@
     "recordDashBoardTest": "npm run test --spec cypress/integration/Example/Test8Frameworkcopy.js --record --key 82df1f9e-20e0-4020-b51e-134a1437b55f"
   },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": true
+    "nonGlobalStepDefinitions": true,
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
   },
   "author": "Jagadeesh",
   "license": "ISC",
@@ -20,6 +26,7 @@
     "cypress-cucumber-preprocessor": "^4.0.0",
     "cypress-iframe": "^1.0.1",
     "mocha": "^8.2.1",
-    "mochawesome": "^6.2.1"
+    "mochawesome": "^6.2.1",
+    "multiple-cucumber-html-reporter": "^1.18.0"
   }
 }

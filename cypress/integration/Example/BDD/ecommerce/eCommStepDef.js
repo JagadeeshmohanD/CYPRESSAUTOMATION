@@ -1,18 +1,24 @@
-/// <reference types="Cypress"/>
+/// <reference types="Cypress" />
 import HomePage from '../../../../support/PageObjects/HomePage'
 import ProductsPage from '../../../../support/PageObjects/ProductsPage'
 import { Given,When,Then, And } from "cypress-cucumber-preprocessor/steps";
-
+//cypress run --spec cypress\integration\examples\BDD\*.feature --headed --browser chrome
+//npx cypress-tags run -e TAGS="@Smoke" --headed --browser chrome
+//npm run test -- --spec cypress\integration\Example\BDD\ecommerce.feature --headed --browser chrome
+//add cucumber report option in package.json ->output.json
+//use html report plugin /create js file (pass the details of output.json )
+//run js file it will create new report file
 const homePage=new HomePage()
 const productspage=new ProductsPage()
-
+let name
 Given('I Open Ecommerce Page',()=>
 {
     cy.visit(Cypress.env('url')+"/angularpractice/")
+  
 })
 
 //When I add items to cart
-When('I add items to Cart',function()
+When('I add items to Cart',function ()
 {
     homePage.getShopTab().click()
 
@@ -50,7 +56,7 @@ And('Validate The Total Prices',()=>
 })
 
 //Then Select The Country Submit and Verufy ThankYou Message
-Then('Select The Country Submit and Verufy ThankYou Message',()=>
+Then('Select The Country Submit and Verify ThankYou Message',()=>
 {
     cy.contains('Checkout').click()
     cy.get('#country').type('India').wait(1000)
@@ -65,4 +71,27 @@ Then('Select The Country Submit and Verufy ThankYou Message',()=>
      expect(actualTest.includes("Success!")).to.be.true
     })
 
+})
+//When I fill the form details
+When('I fill the form details',function(dataTable)
+{
+  //[bobz ,Female]
+  name = dataTable.rawTable[1][0]
+  homePage.getEditBox().type(name)
+  homePage.getGender().select(dataTable.rawTable[1][1])
+})
+//Then validate the form behaviour
+Then('validate the form behaviour',function()
+{
+  homePage.getTwoWayDataBinding().should('have.value',name)
+  homePage.getEditBox().should('have.attr','minlength','2')
+  homePage.getEnterpreneaur().should('be.disabled')
+  //use to pause the program
+  // cy.pause()
+  Cypress.config('defaultCommandTimeout', 10000)
+})
+//And select the shop page
+And('select the shop page',()=>
+{
+  homePage.getShopTab().click()
 })
